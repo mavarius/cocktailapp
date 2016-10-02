@@ -38,6 +38,12 @@ const GameActions = {
       type: 'UPDATE_SCORE',
       payload: { correctScore }
     })
+  },
+
+  reset() {
+    AppDispatcher.dispatch({
+      type: 'RESET'
+    })
   }
 
 }

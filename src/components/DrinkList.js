@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import NavLink from './NavLink'
 import { browserHistory } from 'react-router'
 
+import DrinkActions from '../actions/DrinkActions'
+
 export default class DrinkList extends Component {
   constructor() {
     super()
@@ -14,8 +16,9 @@ export default class DrinkList extends Component {
   //   browserHistory.push(`/detail/${aParam}`);
   // }
 
+
   render() {
-    const { randomDrink, searchResults } = this.props;
+    const { randomDrink, searchResults} = this.props;
     return (
         <div className="row">
           {searchResults ?
@@ -24,7 +27,7 @@ export default class DrinkList extends Component {
                 return (<NavLink key={index} className='drinkThumbs' to={`/Game/${drink.idDrink}`}><img src={drink.strDrinkThumb}></img><span className='drinkName'>{drink.strDrink}</span></NavLink>)
               })}
             </div>
-          : <NavLink className='randomThumb' to={`/Game/${randomDrink.idDrink}`}><img src={randomDrink.strDrinkThumb}></img><span className='randomName'>{randomDrink.strDrink}</span></NavLink> || null }
+          : <div><button className='btn btn-info' onClick={() => {DrinkActions.getRandom()}}>Random Drink</button><NavLink className='randomThumb' to={`/Game/${randomDrink.idDrink}`}><img src={randomDrink.strDrinkThumb}></img><span className='randomName'>{randomDrink.strDrink}</span></NavLink></div> || null }
         </div>
     )
   }

@@ -16,6 +16,8 @@ let _chosenIngredients = []
 
 let _modal = false
 
+let _submitted = false
+
 function _getIngredients(theDrink) {
   _allIngredients = []
 
@@ -62,6 +64,14 @@ class GameStore extends EventEmitter {
           break;
         case 'UPDATE_SCORE':
           _currentScore += action.payload.correctScore
+          _submitted = true
+          this.emit('CHANGE')
+          break;
+        case 'RESET':
+          _submitted = false
+          _correctPercentage = 0
+          _modal = false
+          _chosenIngredients = []
           this.emit('CHANGE')
           break;
       }
@@ -84,7 +94,8 @@ class GameStore extends EventEmitter {
       allIngredients: _allIngredients,
       chosenIngredients: _chosenIngredients,
       correctPercentage: _correctPercentage,
-      currentScore: _currentScore
+      currentScore: _currentScore,
+      submitted: _submitted
     }
   }
 }

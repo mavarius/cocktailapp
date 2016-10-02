@@ -47,7 +47,7 @@ const API = {
           let newIng = eval("randomDrink.strIngredient"+i)
           newIng ? newIngredients.push(newIng) : newIngredients
         }
-        
+
         ServerActions.receiveNewIngredients(newIngredients);
       })
       .catch(console.error)

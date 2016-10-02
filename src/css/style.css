@@ -259,3 +259,7 @@ input {
   font-weight: bold;
   pointer-events: none;
 }
+
+.recipe {
+  display: inline;
+}

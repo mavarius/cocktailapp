@@ -76,6 +76,7 @@ export default class Game extends Component {
       }
     })
 
+    this.openModal()
     GameActions.updateScore(correctScore)
   }
 
@@ -84,14 +85,13 @@ export default class Game extends Component {
   }
 
   render() {
-    const { currentDrink, modal, correctIngredients, allIngredients, chosenIngredients, currentScore, correctPercentage } = this.state;
+    const { currentDrink, modal, correctIngredients, allIngredients, chosenIngredients, currentScore, correctPercentage, submitted } = this.state;
 
     { (allIngredients.length < 20) ? this._getMoreIngredients() : null }
 
     return (
       <div className="row Game">
-        <NavLink className='btn navBtn' to="/" onlyActiveOnIndex>home</NavLink>
-        <span className='playerScore'>SCORE: {currentScore}</span>
+        <NavLink className='btn navBtn' to="/" onClick={() => GameActions.reset()} onlyActiveOnIndex>home</NavLink>
 
         {currentDrink ?
           <div className="secondary">
@@ -120,7 +120,7 @@ export default class Game extends Component {
               <button className='btn btn-success' onClick={this._giveDrink}>GIVE DRINK</button>
             </div>
 
-            <Modal closeModal={this.closeModal} modal={modal} allIngredients={allIngredients}/>
+            <Modal closeModal={this.closeModal} modal={modal} correctIngredients={correctIngredients} correctPercentage={correctPercentage} allIngredients={allIngredients} currentScore={currentScore} currentDrink={currentDrink} submitted={submitted}/>
 
           </div>
         : <span className="loadingMessage">fetching ingredients...</span>}

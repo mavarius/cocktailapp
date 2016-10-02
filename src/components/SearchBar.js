@@ -29,7 +29,7 @@ export default class SearchBar extends Component {
     return (
       <div className="row searchBlock">
         <form onSubmit={this.handleSearch}>
-          <input onFocus={this.clearSearchBar} type="text" className="searchBar" ref="searchInput" placeholder="enter drink name"/>
+          <input onFocus={this.clearSearchBar} type="text" className="searchBar" ref="searchInput" placeholder="search drinks or start with random below"/>
           <button className="btn searchBtn">search</button>
         </form>
       </div>
