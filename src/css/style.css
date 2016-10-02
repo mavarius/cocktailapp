@@ -1,0 +1,261 @@
+body {
+  background: black;
+}
+
+.backgroundImage {
+  background-image: url(../images/vectorBar.png);
+  position: fixed;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  background-size: cover;
+  filter: blur(5px);
+}
+
+.app-title {
+  color: rgba(255, 255, 255, 0.8);
+  position: fixed;
+  left: 4vw;
+  top: 2vh;
+  text-align: center;
+  font-size: 2.5vmin;
+  width: 22vmin;
+  border-left: 3px solid rgba(255, 255, 255, 0.9);
+  border-right: 3px solid rgba(255, 255, 255, 0.9);
+  border-radius: 100vmin;
+}
+
+.gameDrinkName {
+  color: white;
+  font-size: 3em;
+}
+
+.navBtn {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 200px;
+  position: relative;
+  left: 0;
+}
+
+.container {
+  position: relative;
+  z-index: 50;
+}
+
+.drinkThumbs img {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.drinkThumbs {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 250px;
+  height: 300px;
+  margin: 10px;
+}
+
+.drinkName {
+  display: block;
+  margin-top: 10px;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.searchView {
+  text-align: center;
+}
+
+.randomThumb {
+  margin: 100px auto;
+  display: block;
+  position: relative;
+}
+
+.randomThumb img {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.randomName {
+  display: block;
+  margin-top: 10px;
+  color: white;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.searchBlock {
+  position: relative;
+  margin: 0 auto;
+  width: 40vw;
+  text-align: center;
+}
+
+.searchBar {
+  position: relative;
+  margin: 15vh auto 5vh auto;
+  width: 40vw;
+  text-align: center;
+}
+
+.searchBtn {
+  border-radius: 100px;
+  background-color: black;
+  color: white;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+.btn:focus, .btn.focus, .btn:active:focus, .btn:active.focus, .btn.active:focus, .btn.active.focus {
+    outline: none;
+}
+
+*:focus {
+    outline: none;
+}
+
+input {
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  border: none;
+  color: gray;
+  border-bottom: 2px solid rgb(255, 255, 255);
+  width: 100%;
+  font-size: 2.5em;
+  padding-left: 10px;
+}
+
+::-webkit-input-placeholder {
+   color: rgba(0, 0, 0, 0.6);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: rgba(0, 0, 0, 0.6);
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: rgba(0, 0, 0, 0.6);
+}
+
+:-ms-input-placeholder {
+   color: rgba(0, 0, 0, 0.6);
+}
+
+.modalOpen {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: #C46538;
+}
+
+.modalContent {
+  color: white;
+  font-weight: bold;
+  padding: 5vh 5vw;
+}
+
+.close {
+  font-size: 2em;
+  color: rgba(255, 255, 255, 0.5);
+  opacity: inherit;
+  text-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+.close:hover,
+.close:focus {
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 0px 5px 0px rgba(0, 0, 0, 0.25);
+  transition: text-shadow 0.1s, color 0.1s;
+  opacity: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btnModal {
+  background-color: rgba(255, 255, 255, 0.5);
+  font-weight: bold;
+  color: #C46538;
+  position: absolute;
+  padding: 10px 40px;
+  bottom: 5vh;
+  left: 5vw;
+}
+
+.btnModal:hover,
+.btnModal:focus {
+  color: #C46538;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 5px 0px rgba(0, 0, 0, 0.25);
+  transition: all 0.1s;
+}
+
+.modalClosed {
+  display: none;
+}
+
+.gameDrink {
+  position: fixed;
+  right: 20vw;
+  margin-top: 50vh;
+  height: 80vh;
+  top: -40vh;
+  text-align: center;
+}
+
+.ingredientSlot {
+  display: block;
+  width: 240px;
+  background-color: white;
+  color: black;
+  font-size: 1.2em;
+  height: 100px;
+  margin: 10px;
+}
+
+.ingredient {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  padding-top: 20px;
+  width: 250px;
+  height: 260px;
+  margin: 10px;
+}
+
+.ingredient img {
+  position: relative;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  pointer-events: none;
+}
+
+.ingredientName {
+  display: block;
+  margin-top: 10px;
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  pointer-events: none;
+}
