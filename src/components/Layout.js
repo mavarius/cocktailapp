@@ -8,7 +8,7 @@ export default class Layout extends Component {
       <div>
         <div className="backgroundImage"></div>
         <div className='container'>
-          <h1 className='app-title'>Cocktail App</h1>
+          <h1 className='app-title'>Coding Public House</h1>
           <div className="row">
             {this.props.children}
           </div>

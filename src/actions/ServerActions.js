@@ -21,7 +21,7 @@ const ServerActions = {
       payload: {
         id: drink.idDrink,
         name: drink.strDrink,
-        glass: drink.strGlass,
+        glass: drink.strGlass.match(/\w+/g).join(''),
         instructions: drink.strInstructions,
         image: drink.strDrinkThumb,
         ingredient1: drink.strIngredient1,

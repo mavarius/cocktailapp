@@ -8,8 +8,7 @@ import DrinkStore from '../stores/DrinkStore'
 
 import NavLink from './NavLink'
 import Modal from './Modal'
-
-import Beermug from '../images/Beer mug.png'
+import Glass from './Glass'
 
 export default class Game extends Component {
   constructor() {
@@ -19,6 +18,8 @@ export default class Game extends Component {
     this._onChange = this._onChange.bind(this)
     this._getMoreIngredients = this._getMoreIngredients.bind(this)
     this._clearIngredients = this._clearIngredients.bind(this)
+    this._checkDrink = this._checkDrink.bind(this)
+    this._giveDrink = this._giveDrink.bind(this)
   }
 
   componentWillMount() {
@@ -31,6 +32,7 @@ export default class Game extends Component {
   }
 
   componentWillUnmount() {
+
     GameStore.stopListening(this._onChange)
   }
 
@@ -43,7 +45,38 @@ export default class Game extends Component {
   }
 
   _clearIngredients() {
+    this._checkDrink()
     GameActions.clearIngredients()
+  }
+
+  _checkDrink() {
+    const {chosenIngredients, correctIngredients} = this.state;
+
+      let correctScore = 0;
+
+      correctIngredients.forEach((ingredient, i) => {
+        if (chosenIngredients.indexOf(ingredient) !== -1) {
+          correctScore++;
+        }
+      })
+
+      let correctPercentage = Math.floor((correctScore / correctIngredients.length) * 100)
+
+      GameActions.updatePercentage(correctPercentage)
+  }
+
+  _giveDrink() {
+    const {chosenIngredients, correctIngredients} = this.state;
+
+    let correctScore = 0;
+
+    correctIngredients.forEach((ingredient, i) => {
+      if (chosenIngredients.indexOf(ingredient) !== -1) {
+        correctScore++;
+      }
+    })
+
+    GameActions.updateScore(correctScore)
   }
 
   openModal() {
@@ -51,11 +84,14 @@ export default class Game extends Component {
   }
 
   render() {
-    const { currentDrink, modal, correctIngredients, allIngredients, chosenIngredients } = this.state;
+    const { currentDrink, modal, correctIngredients, allIngredients, chosenIngredients, currentScore, correctPercentage } = this.state;
+
     { (allIngredients.length < 20) ? this._getMoreIngredients() : null }
+
     return (
       <div className="row Game">
         <NavLink className='btn navBtn' to="/" onlyActiveOnIndex>home</NavLink>
+        <span className='playerScore'>SCORE: {currentScore}</span>
 
         {currentDrink ?
           <div className="secondary">
@@ -65,7 +101,8 @@ export default class Game extends Component {
               </span>
 
               <div className='ingredientSlots'>
-                <button className='btn btn-success' onClick={this.openModal}>ADD INGREDIENT</button><button className='btn btn-danger' onClick={this._clearIngredients}>DUMP DRINK</button>
+                <button className='btn btn-danger' onClick={this._clearIngredients}>DUMP DRINK</button>
+                {chosenIngredients.length === correctIngredients.length ? <button className='btn btn-success' onClick={this._checkDrink}>CHECK DRINK</button> : <button className='btn btn-info' onClick={this.openModal}>ADD INGREDIENT</button>}
                 {chosenIngredients ?
                   <div>
                     {chosenIngredients.map((ingredient, index) => {
@@ -78,7 +115,9 @@ export default class Game extends Component {
 
             <div className="gameDrink">
               <h1 className="gameDrinkName">{currentDrink.name}</h1>
-              <img src={Beermug} alt=""/>
+              <h2>{correctPercentage}% Correct</h2>
+              <Glass currentDrink={currentDrink}/>
+              <button className='btn btn-success' onClick={this._giveDrink}>GIVE DRINK</button>
             </div>
 
             <Modal closeModal={this.closeModal} modal={modal} allIngredients={allIngredients}/>

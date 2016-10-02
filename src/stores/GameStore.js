@@ -2,6 +2,10 @@ import { EventEmitter } from 'events'
 import AppDispatcher from '../AppDispatcher'
 import lodash from 'lodash'
 
+let _correctPercentage = 0
+
+let _currentScore = 0
+
 let _currentDrink = {}
 
 let _correctIngredients = []
@@ -12,34 +16,9 @@ let _chosenIngredients = []
 
 let _modal = false
 
-let _glasses = {
-  Beermug: '../images/Beermug.png',
-  Beerpilsner: '../images/Beerpilsner.png',
-  Brandysnifter: '../images/Brandysnifter.png',
-  Champagneflute: '../images/Champagneflute.png',
-  Cocktailglass: '../images/Cocktailglass.png',
-  Coffeemug: '../images/Coffeemug.png',
-  Collinsglass: '../images/Collinsglass.png',
-  Highballglass: '../images/Highballglass.png',
-  Hurricaneglass: '../images/Hurricaneglass.png',
-  Irishcoffeecup: '../images/Irishcoffeecup.png',
-  MargaritaCoupetteglass: '../images/MargaritaCoupetteglass.png',
-  Masonjar: '../images/Masonjar.png',
-  Oldfashionedglass: '../images/Oldfashionedglass.png',
-  Parfaitglass: '../images/Parfaitglass.png',
-  Pintglass: '../images/Pintglass.png',
-  Pitcher: '../images/Pitcher.png',
-  Poussecafeglass: '../images/Poussecafeglass.png',
-  Punchbowl: '../images/Punchbowl.png',
-  Redwineglass: '../images/Redwineglass.png',
-  Sherryglass: '../images/Sherryglass.png',
-  Shotglass: '../images/Shotglass.png',
-  Whiskeysourglass: '../images/Whiskeysourglass.png',
-  Whitewineglass: '../images/Whitewineglass.png',
-  Wineglass: '../images/Wineglass.png',
-};
-
 function _getIngredients(theDrink) {
+  _allIngredients = []
+
   for (let i = 1; i <= 15; i++) {
     let newIng = eval("theDrink.ingredient"+i)
 
@@ -47,7 +26,6 @@ function _getIngredients(theDrink) {
   }
 
   _correctIngredients = _allIngredients.slice()
-  console.log('correctIngredients: ', _correctIngredients);
 }
 
 class GameStore extends EventEmitter {
@@ -71,11 +49,19 @@ class GameStore extends EventEmitter {
           this.emit('CHANGE')
           break;
         case 'CHOOSE_INGREDIENT':
-          _chosenIngredients.push(action.payload.chosenIngredient)
+          _chosenIngredients.unshift(action.payload.chosenIngredient)
           this.emit('CHANGE')
           break;
         case 'CLEAR_INGREDIENTS':
           _chosenIngredients = []
+          this.emit('CHANGE')
+          break;
+        case 'UPDATE_PERCECENTAGE':
+          _correctPercentage = action.payload.correctPercentage
+          this.emit('CHANGE')
+          break;
+        case 'UPDATE_SCORE':
+          _currentScore += action.payload.correctScore
           this.emit('CHANGE')
           break;
       }
@@ -96,7 +82,9 @@ class GameStore extends EventEmitter {
       modal: _modal,
       correctIngredients: _correctIngredients,
       allIngredients: _allIngredients,
-      chosenIngredients: _chosenIngredients
+      chosenIngredients: _chosenIngredients,
+      correctPercentage: _correctPercentage,
+      currentScore: _currentScore
     }
   }
 }
