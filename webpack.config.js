@@ -13,7 +13,7 @@ module.exports = {
     './src/css/style.css',
     './src/index.js',
   ],
-  output: { path: './build', publicPath: '/cocktailapp/build/', filename: 'bundle.js' },
+  output: { path: './build', publicPath: '/build/', filename: 'bundle.js' },
   module: {
     loaders: [
       {
