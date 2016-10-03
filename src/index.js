@@ -11,9 +11,9 @@ import Game from './components/Game'
 render(
   <Router history={browserHistory}>
 
-    <Route path='/' component={Layout}>
+    <Route path='/cocktailapp/' component={Layout}>
       <IndexRoute component={Home}></IndexRoute>
-      <Route path='/Game/:aParam' component={Game}></Route>
+      <Route path='/cocktailapp/Game/:aParam' component={Game}></Route>
     </Route>
 
   </Router>,
