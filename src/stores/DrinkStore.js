@@ -15,6 +15,7 @@ class DrinkStore extends EventEmitter {
       switch (action.type) {
         case 'RECEIVE_RANDOM':
           _randomDrink = action.payload.randomDrink
+          _searchResults = null
           this.emit('CHANGE')
           break;
         case 'RECEIVE_SEARCH_RESULTS':

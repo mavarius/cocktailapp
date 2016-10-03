@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 
 import GameStore from '../stores/GameStore'
+import NavLink from './NavLink'
 
 export default class ScoreKeeper extends Component {
   constructor() {
@@ -30,9 +31,14 @@ export default class ScoreKeeper extends Component {
     const { currentScore } = this.state;
 
     return (
-      <div className="row">
-        <h2 className='playerScore'>SCORE: {currentScore}</h2>
+      <div className="scoreKeeper">
+        <NavLink className='btn navBtn' to="/" onClick={() => GameActions.reset()} onlyActiveOnIndex>Choose Another Drink</NavLink>
+        <div className="scoreBox">
+          <h3>SCORE</h3>
+          <h1  className='playerScore'>{currentScore}</h1>
+        </div>
       </div>
+
     )
   }
 }

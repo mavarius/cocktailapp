@@ -91,22 +91,21 @@ export default class Game extends Component {
 
     return (
       <div className="row Game">
-        <NavLink className='btn navBtn' to="/" onClick={() => GameActions.reset()} onlyActiveOnIndex>home</NavLink>
-
         {currentDrink ?
           <div className="secondary">
             <div className='ingredientArea'>
-              <span className="drinkThumbs">
+              <span className="currentDrinkThumb">
                 <img src={currentDrink.image} alt=""/>
               </span>
 
               <div className='ingredientSlots'>
                 <button className='btn btn-danger' onClick={this._clearIngredients}>DUMP DRINK</button>
-                {chosenIngredients.length === correctIngredients.length ? <button className='btn btn-success' onClick={this._checkDrink}>CHECK DRINK</button> : <button className='btn btn-info' onClick={this.openModal}>ADD INGREDIENT</button>}
+                {chosenIngredients.length === correctIngredients.length ? <button className='btn btn-warning' onClick={this._checkDrink}>CHECK DRINK</button> : <button className='btn btn-info' onClick={this.openModal}>ADD INGREDIENT</button>}
+                <h4>{chosenIngredients.length}/{correctIngredients.length} ingredients</h4>
                 {chosenIngredients ?
                   <div>
                     {chosenIngredients.map((ingredient, index) => {
-                      return (<span key={index} className='ingredientSlot'><img src={`http://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`}/>{ingredient}</span>)
+                      return (<span key={index} className='ingredientSlot'><img src={`http://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`}/><p>{ingredient}</p></span>)
                     })}
                   </div>
                 : null}
@@ -117,7 +116,7 @@ export default class Game extends Component {
               <h1 className="gameDrinkName">{currentDrink.name}</h1>
               <h2>{correctPercentage}% Correct</h2>
               <Glass currentDrink={currentDrink}/>
-              <button className='btn btn-success' onClick={this._giveDrink}>GIVE DRINK</button>
+              <button className='btn btn-success' onClick={this._giveDrink}>SERVE DRINK</button>
             </div>
 
             <Modal closeModal={this.closeModal} modal={modal} correctIngredients={correctIngredients} correctPercentage={correctPercentage} allIngredients={allIngredients} currentScore={currentScore} currentDrink={currentDrink} submitted={submitted}/>

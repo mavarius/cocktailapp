@@ -2,7 +2,7 @@ import { EventEmitter } from 'events'
 import AppDispatcher from '../AppDispatcher'
 import lodash from 'lodash'
 
-let _correctPercentage = 0
+let _correctPercentage = ''
 
 let _currentScore = 0
 
@@ -56,6 +56,7 @@ class GameStore extends EventEmitter {
           break;
         case 'CLEAR_INGREDIENTS':
           _chosenIngredients = []
+          _correctPercentage = ''
           this.emit('CHANGE')
           break;
         case 'UPDATE_PERCECENTAGE':
@@ -69,7 +70,7 @@ class GameStore extends EventEmitter {
           break;
         case 'RESET':
           _submitted = false
-          _correctPercentage = 0
+          _correctPercentage = ''
           _modal = false
           _chosenIngredients = []
           this.emit('CHANGE')

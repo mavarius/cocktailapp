@@ -27,7 +27,7 @@ export default class DrinkList extends Component {
                 return (<NavLink key={index} className='drinkThumbs' to={`/Game/${drink.idDrink}`}><img src={drink.strDrinkThumb}></img><span className='drinkName'>{drink.strDrink}</span></NavLink>)
               })}
             </div>
-          : <div><button className='btn btn-info' onClick={() => {DrinkActions.getRandom()}}>Random Drink</button><NavLink className='randomThumb' to={`/Game/${randomDrink.idDrink}`}><img src={randomDrink.strDrinkThumb}></img><span className='randomName'>{randomDrink.strDrink}</span></NavLink></div> || null }
+          : <div><NavLink className='randomThumb' to={`/Game/${randomDrink.idDrink}`}><img src={randomDrink.strDrinkThumb}></img><span className='randomName'>{randomDrink.strDrink}</span></NavLink></div> || null }
         </div>
     )
   }

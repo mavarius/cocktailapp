@@ -14,19 +14,25 @@ export default class Recipe extends Component {
   render() {
     const { currentScore, currentDrink, correctPercentage, correctIngredients } = this.props;
     return(
-      <div >
-        <NavLink className='btn navBtn' to="/" onClick={() => GameActions.reset()} onlyActiveOnIndex>Choose Another Drink</NavLink>
-        <h1 className="gameDrinkName">{currentDrink.name}</h1>
+      <div className='revealed'>
+        <NavLink className='btn btn-success' to="/" onClick={() => GameActions.reset()} onlyActiveOnIndex>Choose Another Drink</NavLink>
+
+        <div className='row revealedSummary'>
+          <span className="revealedDrink"><img src={currentDrink.image}/></span>
+          <h1 className="revealedName">{currentDrink.name}</h1>
           <span className='playerScore'>TOTAL SCORE: {currentScore}</span>
           <h2>DRINK SCORE: {correctPercentage}%</h2>
-          <span className="drinkThumbs"><img src={currentDrink.image}/></span>
+        </div>
 
+        <div className='row revealedRecipe'>
           <div className='ingredientSlots'>
             {correctIngredients.map((ingredient, index) => {
-              return (<span key={index} className='ingredientSlot'><img src={`http://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`}/>{ingredient}</span>)
+              return (<span key={index} className='ingredient'><img src={`http://www.thecocktaildb.com/images/ingredients/${ingredient}-Small.png`}/><span className='ingredientName'>{ingredient}</span></span>)
             })}
           </div>
           <h2 className='recipe'>{currentDrink.instructions}</h2>
+        </div>
+
       </div>
     )
   }

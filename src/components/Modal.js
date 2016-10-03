@@ -21,7 +21,7 @@ export default class Modal extends Component {
               <Recipe currentDrink={currentDrink} currentScore={currentScore} correctIngredients={correctIngredients} correctPercentage={correctPercentage}/>
             </div>
           : <div>
-              <span className='close' onClick={this.closeModal}>x</span>
+              <span className='close' onClick={this.closeModal}>close</span>
               <Ingredients allIngredients={allIngredients} closeModal={this.closeModal}/>
             </div> }
         </div>
